@@ -9,7 +9,7 @@ $link = "mysql:";
 $link .= "host=" . $fields["host"];
 $link .= ";port=" . $fields["port"];;
 $link .= ";dbname=defaultdb";
-$link .= ";sslmode=verify-ca;sslrootcert='D:/absolute/path/to/ssl/certs/ca.pem'";
+$link .= ";sslmode=verify-ca;sslrootcert='ca.pem'";
 
 try {
     $db = new PDO($link, $fields["user"], $fields["pass"]);
