@@ -34,7 +34,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" id="Override" href="home.php">Home</a>
+          <a class="nav-link" id="Override" href="Home.php">Home</a>
 		</li>
 		<li class="nav-item">
           <a class="nav-link" href="Rubric.php" id="Override">Rubric</a>

@@ -68,7 +68,7 @@ require 'conn_db.php';
 	</div>
 </body>
 <?php
-mysqli_close($link);
+//mysqli_close($link);
 
 include 'includes/Footer.php';
 
