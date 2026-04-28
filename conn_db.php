@@ -1,21 +1,11 @@
 <?php
-
-$uri = "MYSQL_URI";
-
-$fields = parse_url($uri);
-
-// build the DSN including SSL settings
-$link = "mysql:";
-$link .= "host=" . $fields["host"];
-$link .= ";port=" . $fields["port"];;
-$link .= ";dbname=defaultdb";
-$link .= ";sslmode=verify-ca;sslrootcert='ca.pem'";
-
+$dsn = "mysql:host=gradedunit1-benmacphee1-b4b3.c.aivencloud.com;dbname=gradedunit";
+$dbusername = "avnadmin";
+$dbpassword = "AVNS_J-oEd11luXOcdaQHysb";
 try {
-    $db = new PDO($link, $fields["user"], $fields["pass"]);
-
-    $stmt = $db->query("SELECT VERSION()");
-    print($stmt->fetch()[0]);
-} catch (Exception $e) {
-    echo "Error: " . $e->getMessage();
+    $link = new PDO($dsn, $dbusername, $dbpassword);
+    $link->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    echo "Connection failed: " . $e->getMessage();
 }
+?>
