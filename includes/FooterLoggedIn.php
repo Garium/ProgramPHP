@@ -1,6 +1,6 @@
 
 <style>
-	.links{		color: #5c00DE;margin-left:5px;
+	.links{		color: #b794f6;margin-left:5px;
 }
 	.text{color:#5c1eb3}
 	

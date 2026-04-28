@@ -1,23 +1,18 @@
-
 {
-	"name": "PHP",
-	"image": "mcr.microsoft.com/devcontainers/php:3-8.5-trixie",
+  "name": "PHP + MySQL",
+  "image": "mcr.microsoft.com/devcontainers/php:8.2",
 
-"customizations": {
-  "vscode": {
-    "extensions": [
-      "ikappas.composer"
-    ]
-  }
-},
+  "customizations": {
+    "vscode": {
+      "extensions": ["ikappas.composer"]
+    }
+  },
 
-	"forwardPorts": [
-		8080
-	],
-	"features": {
-		"ghcr.io/devcontainers/features/github-cli:1": {}
-	},
+  "forwardPorts": [8080],
 
-	"postCreateCommand": "sudo chmod a+x \"$(pwd)\" && sudo rm -rf /var/www/html && sudo ln -s \"$(pwd)\" /var/www/html; if [ -f composer.json ];then composer install;fi"
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
 
+  "postCreateCommand": "sudo chmod a+x \"$(pwd)\" && sudo rm -rf /var/www/html && sudo ln -s \"$(pwd)\" /var/www/html && sudo -E docker-php-ext-install pdo_mysql mysqli && if [ -f composer.json ]; then composer install; fi"
 }

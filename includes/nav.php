@@ -19,7 +19,7 @@ if (!isset($_SESSION['company_ID'])) {
 
 	#Override {
 		background-color: #2A2334;
-		color: #5c00DE;
+		color: #b794f6;
 	}
 
 	

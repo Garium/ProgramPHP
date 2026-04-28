@@ -1,5 +1,5 @@
 <style>
-	.links{		color: #5c00DE;margin-left:5px;
+	.links{		color: #b794f6;margin-left:5px;
 }
 	.text{color:#5c1eb3}
 	
@@ -16,7 +16,7 @@
           <!-- Grid column -->
           <div class="col-md-2">
             <h6 class="text-uppercase font-weight-bold">
-              <a href="About us.php" class="links">About us</a>
+              <a href="About-us.php" class="links">About us</a>
             </h6>
           </div>
           <!-- Grid column -->
@@ -66,5 +66,3 @@
     <!-- Copyright -->
   </footer>
   <!-- Footer -->
-</div>
-<!-- End of .container -->
