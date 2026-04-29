@@ -3,6 +3,10 @@ session_start();
 
 require 'conn_db.php';
 
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    header("Location: login.html");
+    exit();
+}
 // Get form data
 $Contactemail = trim($_POST['Contactemail']);
 $password = trim($_POST['password']);
@@ -14,13 +18,13 @@ if (empty($Contactemail) || empty($password)) {
 
 // Find user
 $stmt = $link->prepare("SELECT company_ID, CompanyName, password FROM company_account WHERE Contactemail = ?");
-$stmt->bind_param("s", $Contactemail);
-$stmt->execute();
-$stmt->store_result();
+$stmt->execute([$Contactemail]);
 
-if ($stmt->num_rows == 1) {
-    $stmt->bind_result($company_ID, $CompanyName, $hashed_password);
-    $stmt->fetch();
+$row = $stmt->fetch(PDO::FETCH_ASSOC);
+if ($row) {
+    $company_ID = $row['company_ID'];
+    $CompanyName = $row['CompanyName'];
+    $hashed_password = $row['password'];
 
     // Verify password
     if (password_verify($password, $hashed_password)) {
@@ -29,12 +33,9 @@ if ($stmt->num_rows == 1) {
         header("Location: HomeLoggedIn.php");
         exit();
     } else {
-        die("Invalid password.");
+        die("No account found with that email or password.");
     }
 } else {
     die("No account found with that email or password.");
 }
-
-$stmt->close();
-$link->close();
 ?>

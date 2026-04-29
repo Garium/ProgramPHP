@@ -1,23 +1,37 @@
-
 <?php
-require 'conn_db.php';
+ob_start();
 include 'includes/nav.php';
+require 'conn_db.php';
 
 $company_ID = $_SESSION['company_ID'];
 $certifice_ID = $certificate_Level = $certificate_Ref= $date = $CompanyName = "";
 $stmt = $link->prepare("SELECT certificate_progress.certifice_ID, certificate_progress.certificate_Ref, account_rubrics.certificate_Level, account_rubrics.Rubric_date , company_account.CompanyName
-FROM certificate_progress 
+FROM certificate_progress
 INNER JOIN account_rubrics ON certificate_progress.Rubric_ID=account_rubrics.Rubric_ID
 INNER JOIN company_account ON company_account.company_ID=account_rubrics.company_ID
-WHERE company_account.company_ID = ?
-ORDER by account_rubrics.Rubric_date ASC LIMIT 1;");
-$stmt->bind_param("i", $company_ID);
-if ($stmt->execute()) {
-$stmt->store_result();
-$stmt->bind_result($certifice_ID, $certificate_Ref, $certificate_Level, $date, $CompanyName);
-$stmt->fetch();
-}else {
-	echo "Error: " . $stmt->error;
+WHERE company_account.company_ID = ? AND certificate_progress.Certificate_Achieved = 1
+ORDER BY certificate_progress.certifice_ID DESC;");
+$stmt->bindParam(1, $company_ID, PDO::PARAM_INT);
+try {
+    $stmt->execute();
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    if (!$row) {
+    echo "<p style='color:#fff;text-align:center;margin-top:50px;'>
+            You haven't completed the rubric yet.
+          </p>";
+    include 'includes/FooterLoggedIn.php';
+    exit();
+    }
+    if ($row) {
+        $certifice_ID = $row['certifice_ID'];
+        $certificate_Ref = $row['certificate_Ref'];
+        $certificate_Level = $row['certificate_Level'];
+        $date = $row['Rubric_date'];
+        $CompanyName = $row['CompanyName'];
+    }
+} catch(PDOException $e) {
+    $errorInfo = $stmt->errorInfo();
+    echo "Error: " . $errorInfo[2];
 }
 $classname = 'bronze';
 if($certificate_Level == "Gold"){
@@ -52,7 +66,7 @@ body {
     margin: 50px auto;
     padding: 40px;
     border: 10px solid #856A00;
-    background: #fff;
+    background: #ffffff;
     box-shadow: 0 0 20px rgba(0,0,0,0.1);
     position: relative;
 }
@@ -103,18 +117,18 @@ body {
 </head>
 <body>
 
-<div class="logrow <?php echo $classname ?>">
-    <div class="certificate-header" id='logrow <?php echo $classname ?> '>
+<div class="<?php echo $classname; ?>">
+    <div class="certificate-header" style="color: <?php echo ($certificate_Level == 'Gold') ? '#856A00' : (($certificate_Level == 'Silver') ? '#A9A9A9' : '#CD8032'); ?>">
         Certificate of Achievement
     </div>
-    <div class="certificate-body">
+    <div class="certificate-body" style="color: <?php echo ($certificate_Level == 'Gold') ? '#856A00' : (($certificate_Level == 'Silver') ? '#A9A9A9' : '#CD8032'); ?>">
         <p>This is to certify that</p>
         <h1><?php echo $CompanyName; ?></h1>
         <p>has successfully achieved the level of</p>
         <h1><?php echo $certificate_Level; ?></h1>
 
     </div>
-    <div class="certificate-footer">
+    <div class="certificate-footer" style="color: <?php echo ($certificate_Level == 'Gold') ? '#856A00' : (($certificate_Level == 'Silver') ? '#A9A9A9' : '#CD8032'); ?>">
         <div class="referanceNum">
 			<p>Certificate Referance Number:</p>
             <?php echo $certificate_Ref;?>
@@ -128,4 +142,6 @@ body {
 </body>
 </html>
 
-<?php include 'includes/FooterLoggedIn.php';?>
+<?php include 'includes/FooterLoggedIn.php';
+ob_end_flush();
+?>

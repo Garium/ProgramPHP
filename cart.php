@@ -1,5 +1,5 @@
 <?php
-
+ob_start();
 include 'includes/nav.php';
 
 # Check if points_needed parameter exists
@@ -8,8 +8,11 @@ if (isset($_GET['points_needed'])) {
 	$points = 100 - $points_needed;
 	
 	if(isset($_POST['proceedToPurchase'])){
+        ob_end_clean();
 		header("Location: purchase_points.php?points_needed=$points_needed");
+        exit;
 	}
+
     ?>
     <!DOCTYPE html>
     <html>
@@ -46,11 +49,11 @@ if (isset($_GET['points_needed'])) {
 		</div>
     </body>
     </html>
-    <?php
-}
 
-?>
+
 
 <?php
+}
 include 'includes/Footer.php';
+ob_end_flush();
 ?>

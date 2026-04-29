@@ -1,33 +1,55 @@
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Vidaloka&display=swap" rel="stylesheet">
-	<style>
-	#submitButton {
-	font-family: "Vidaloka", serif;
-	font-weight: 400;
-	font-style: normal;
-	background-color:#2e2b33;
-	color:#542e89;
-}
-	h3{
-	font-family: "Vidaloka", serif;
-	font-weight: 400;
-	font-style: normal;
-	background-color:#000000;
-	color:#542e89;
-}
-	#box1{width:70rem;   
-	margin-left: auto;
-	margin-right: auto;
-	text-align: center;}
-			</style>
-
 <?php
-
 include 'includes/nav.php';
-
 require 'conn_db.php';
+
+// All POST handling goes here, BEFORE any HTML output
+$company_ID = $_SESSION['company_ID'] ?? null;
+
+if (isset($_POST['delete'])) {
+    $stmt = $link->prepare("DELETE FROM company_account WHERE company_ID = ?");
+    if ($stmt->execute([$company_ID])) {
+        header("Location: logout.php");   // works now — no output yet
+        exit();
+    }
+}
+
+if (isset($_POST['updateUsername'])) {    // matches the form's name="updateUsername"
+    $CompanyName = $_POST['CompanyName'];
+    $stmt = $link->prepare("UPDATE company_account SET CompanyName = ? WHERE company_ID = ?");
+    if ($stmt->execute([$CompanyName, $company_ID])) {
+        $_SESSION['CompanyName'] = $CompanyName;
+    }
+}
+
+if (isset($_POST['updatePassword'])) {
+    $password = $_POST['Password'];
+    $passwordPattern = "/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}$/";
+    if (!preg_match($passwordPattern, $password)) {
+        $pwError = "Password must be at least 8 chars, with upper, lower, number, special.";
+    } else {
+        $hashed = password_hash($password, PASSWORD_DEFAULT);
+        $stmt = $link->prepare("UPDATE company_account SET password = ? WHERE company_ID = ?");
+        $stmt->execute([$hashed, $company_ID]);
+    }
+}
+
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Account Info for <?= htmlspecialchars($_SESSION['CompanyName']) ?></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vidaloka&display=swap" rel="stylesheet">
+    <style>
+        #submitButton, h3 {
+            font-family: "Vidaloka", serif;
+            background-color: #2e2b33;
+            color: #d6bcfa;
+        }
+        .submit-button { /* use a class instead — see note below */ }
+    </style>
+</head>
 
 <html>
 <head>
@@ -52,52 +74,5 @@ require 'conn_db.php';
 	</center>
 
 </body>		
-
-<?php
-
-$company_ID = $_SESSION['company_ID'];
-
-if(isset($_POST['delete'])){
-	$query = "DELETE FROM company_account WHERE company_ID='$company_ID' ";
-	$query_run = mysqli_query($link,$query);
-	
-	if($query_run){
-		header("Refresh:1; url=logout.php");
-	}
-	else{		
-		echo '<script type="text/javascript"> alert("Failed")</script>';	
-	}
-	}
-if(isset($_POST['updateCompanyName'])){
-	$CompanyName = $_POST['CompanyName'];
-	$query = "UPDATE company_account SET CompanyName = '$CompanyName' WHERE company_ID='$user_id' ";
-	$query_run = mysqli_query($link,$query);
-	
-	if($query_run){
-		$_SESSION['CompanyName'] = $CompanyName;	
-		}
-	else{		
-		echo '<script type="text/javascript"> alert("Failed")</script>';	
-	}
-	}
-	
-if(isset($_POST['updatePassword'])){
-	$password = $_POST['Password'];
-	
-	$passwordPattern = "/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}$/";
-	if (!preg_match($passwordPattern, $password)) {
-		die("Password must be at least 8 characters long, include an uppercase letter, a lowercase letter, a number, and a special character.");
-	}
-	$hashed_password = password_hash($password, PASSWORD_DEFAULT);
-	$query = "UPDATE company_account SET password = '$hashed_password' WHERE company_ID='$user_id' ";
-	$query_run = mysqli_query($link,$query);
-	
-	if($query_run){
-		echo '<script type="text/javascript"> alert("Password Updated")</script>';
-	}
-	else{		
-		echo '<script type="text/javascript"> alert("Failed")</script>';	
-	}
-	}
-	include 'includes/FooterLoggedIn.php';
-?>
+</html>
+<?php include 'includes/FooterLoggedIn.php';?>

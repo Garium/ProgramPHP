@@ -1,4 +1,53 @@
-	<link rel="preconnect" href="https://fonts.googleapis.com">
+<?php
+
+require 'conn_db.php';
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+if(isset($_POST['passwordForgot'])){
+// Get form data
+$Contactemail = isset($_POST['Contactemail']) ? trim($_POST['Contactemail']) : '';
+$password = isset($_POST['password']) ? trim($_POST['password']) : '';
+
+// Basic validation
+if (empty($Contactemail) || empty($password)) {
+    die("All fields are required.");
+}
+
+// Email format validation
+if (!filter_var($Contactemail, FILTER_VALIDATE_EMAIL)) {
+    die("Invalid email format.");
+}
+
+// Password strength check
+$passwordPattern = "/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}$/";
+if (!preg_match($passwordPattern, $password)) {
+    die("Password must be at least 8 characters long, include an uppercase letter, a lowercase letter, a number, and a special character.");
+}
+
+// Check if email already exists
+$stmt = $link->prepare("SELECT company_ID FROM company_account WHERE Contactemail = ?");
+$stmt->execute([$Contactemail]);
+$row = $stmt->fetch(PDO::FETCH_ASSOC);
+if (!$row) {
+	die("No Email Registered");
+}
+$company_ID = $row['company_ID'];
+
+// Hash password
+$hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+// Update password
+$updateStmt = $link->prepare("UPDATE company_account SET password = ? WHERE company_ID = ?");
+if ($updateStmt->execute([$hashed_password, $company_ID])) {
+	header("Location: Home.php");
+	exit();
+} else {
+	echo "Error updating password.";
+}
+}
+}
+?>
+<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Vidaloka&display=swap" rel="stylesheet">
 	<style>
@@ -22,10 +71,6 @@
 	text-align: center;}
 			</style>
 
-<?php
-
-require 'conn_db.php';
-?>
 <html lang="en">
 
   <head>
@@ -85,57 +130,6 @@ require 'conn_db.php';
 </body>
 </html>
 <?php
-if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-if(isset($_POST['passwordForgot'])){
-// Get form data
-$Contactemail = isset($_POST['Contactemail']) ? trim($_POST['Contactemail']) : '';
-$password = isset($_POST['password']) ? trim($_POST['password']) : '';
 
-// Basic validation
-if (empty($Contactemail) || empty($password)) {
-    die("All fields are required.");
-}
-
-// Email format validation
-if (!filter_var($Contactemail, FILTER_VALIDATE_EMAIL)) {
-    die("Invalid email format.");
-}
-
-// Password strength check
-$passwordPattern = "/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}$/";
-if (!preg_match($passwordPattern, $password)) {
-    die("Password must be at least 8 characters long, include an uppercase letter, a lowercase letter, a number, and a special character.");
-}
-
-// Check if email already exists
-$stmt = $link->prepare("SELECT company_ID FROM company_account WHERE Contactemail = ?");
-$stmt->bind_param("s", $Contactemail);
-$stmt->execute();
-$stmt->store_result();
-if ($stmt->num_rows == 0) {
-    die("No Email Registered");
-}
-if ($stmt->num_rows == 1) {
-    $stmt->bind_result($company_ID);
-	$stmt->fetch();
-}
-$stmt->close();
-
-// Hash password
-$hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-// Insert new user
-$stmt = $link->prepare("UPDATE company_account SET Contactemail = ?, password = ? WHERE company_ID = ?");
-$stmt->bind_param("ssi", $Contactemail, $hashed_password, $company_ID);
-
-if ($stmt->execute()) {
-    // Redirect to login page
-    header("Location: Home.php");
-    exit();
-} else {
-    echo "Error: " . $stmt->error;
-}
-}
-}
 ?>
 

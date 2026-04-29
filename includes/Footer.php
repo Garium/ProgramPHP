@@ -16,7 +16,7 @@
           <!-- Grid column -->
           <div class="col-md-2">
             <h6 class="text-uppercase font-weight-bold">
-              <a href="About-us.php" class="links">About us</a>
+              <a href="AboutUs.php" class="links">About us</a>
             </h6>
           </div>
           <!-- Grid column -->

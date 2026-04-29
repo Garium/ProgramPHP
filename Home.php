@@ -1,7 +1,11 @@
-	<style>
+	<html>
+<head>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Vidaloka&display=swap" rel="stylesheet">
+	<title> Home </title>   
+</head>
+<style>
 	.Box {
 	font-family: "Vidaloka", serif;
 	font-weight: 400;
@@ -15,7 +19,7 @@
 	font-family: "Vidaloka", serif;
 	font-weight: 400;
 	font-style: normal;
-	color:#2a2334;
+	color:#b794f6;
 	font-size: 133%;
 	}
 	
@@ -27,6 +31,7 @@
             display: flex;
             justify-content: center; 
             gap: 16%; 
+			background-color:#432F5E;
         }
         .image-container img {
             width: 16%; 
@@ -41,16 +46,13 @@ include 'includes/navIndex.php';
 require 'conn_db.php';
 		
 ?>
-<html>
-<head>
-	<title> Home </title>   
-</head>
+
 <body id = "Override">
     <div class="image-container">
         <?php
         // Array of image sources
         $images = [
-            'IMG/HPSustainable1.JPG',
+            'IMG/HPSustainable1.jpg',
             'IMG/HPSustainable1.jpg',
             'IMG/HPSustainable1.jpg'
         ];

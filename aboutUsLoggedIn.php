@@ -1,4 +1,11 @@
-	<link rel="preconnect" href="https://fonts.googleapis.com">
+<?php
+
+include 'includes/nav.php';
+
+require 'conn_db.php';
+?>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Vidaloka&display=swap" rel="stylesheet">
 	<style>
@@ -18,12 +25,6 @@
 }
 			</style>
 
-<?php
-
-include 'includes/nav.php';
-
-require 'conn_db.php';
-?>
 <head>
 <title>About us</title>
 </head>
