@@ -16,5 +16,9 @@
             "connectionTimeout": 30,
             "password": ""
         }
+    ],
+    "cSpell.words": [
+        "Contactemail",
+        "organisation"
     ]
 }

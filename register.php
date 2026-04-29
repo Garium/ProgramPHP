@@ -7,7 +7,13 @@
 $CompanyName = trim($_POST['CompanyName']);
 $Contactemail = trim($_POST['Contactemail']);
 $password = trim($_POST['password']);
-
+$card_name = $_POST['card_name'];
+$card_number = $_POST['card_number'];
+$expiry = $_POST['expiry'];
+$cvv = $_POST['cvv'];
+if (strlen($card_number) < 12) {
+	die("Invalid card number!");
+}
 // Basic validation
 if (empty($CompanyName) || empty($Contactemail) || empty($password)) {
     die("All fields are required.");

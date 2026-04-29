@@ -1,14 +1,18 @@
 <?php
+//ob_start is used to start output buffering, so header redirection occurs after output has been generated
 ob_start();
+// includes the database connection and navigation bar
 include 'includes/nav.php';
 require 'conn_db.php';
 
 $error_message = "";
 
+// Function to generate a random string for certificate reference
 function getRandomString($n) {
     return bin2hex(random_bytes($n / 2));
 }
 
+// Check if the rubric form has been submitted
 if (isset($_POST['Rubric_Submit'])) {
     $company_ID = $_SESSION['company_ID'];
 

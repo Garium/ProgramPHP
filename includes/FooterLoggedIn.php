@@ -49,7 +49,7 @@
       <section class="mb-5">
         <div class="row d-flex justify-content-center">
           <div class="col-lg-8">
-            <p class="text">
+            <p class="text" style=" color:#b794f6;">
 				Sustain Energy is a charitable organisation, all proceeds from this website goes to operation costs and put towards good causes for efforts of sustainability
             </p>
           </div>
@@ -62,7 +62,7 @@
 
     <!-- Copyright -->
     <div
-         class="text"
+         class="text" style=" color:#b794f6;"
          >
               ©2025 www.SustainEnergy.com - All Rights Reserved.
     </div>

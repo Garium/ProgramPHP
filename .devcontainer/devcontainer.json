@@ -14,5 +14,10 @@
     "ghcr.io/devcontainers/features/github-cli:1": {}
   },
 
-  "postCreateCommand": "sudo chmod a+x \"$(pwd)\" && sudo rm -rf /var/www/html && sudo ln -s \"$(pwd)\" /var/www/html && sudo -E docker-php-ext-install pdo_mysql mysqli && if [ -f composer.json ]; then composer install; fi"
+  "postCreateCommand": "sudo chmod a+x \"$(pwd)\" && sudo rm -rf /var/www/html && sudo ln -s \"$(pwd)\" /var/www/html && sudo -E docker-php-ext-install pdo_mysql mysqli && if [ -f composer.json ]; then composer install; fi",
+
+"postStartCommand": "sudo apache2ctl start",
+"portsAttributes": {
+  "8080": { "onAutoForward": "openBrowser" }
+}
 }

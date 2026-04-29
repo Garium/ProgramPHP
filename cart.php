@@ -26,7 +26,7 @@ if (isset($_GET['points_needed'])) {
                 font-family: "Vidaloka", serif;
                 font-weight: 400;
                 font-style: normal;
-                color: #542e89;
+                color: #d6bcfa;
             }
             #box1 {
                 width: 100%;
@@ -44,7 +44,7 @@ if (isset($_GET['points_needed'])) {
         </div>
 		<div id="box1" style="margin-top:10px;">
             <form action=""  method="POST">
-                <button type="submit" name="proceedToPurchase" style="font-size:20px;padding:10px 20px;background-color:#2A2334;color: #542e89;">Proceed to purchase</button>
+                <button type="submit" name="proceedToPurchase" style="font-size:20px;padding:10px 20px;background-color:#2A2334;color: #d6bcfa;">Proceed to purchase</button>
             </form>
 		</div>
     </body>

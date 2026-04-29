@@ -1,8 +1,10 @@
 <?php
+// Start the session and include database connection
 session_start();
 
 require 'conn_db.php';
 
+// Check if the request method is POST, if not redirect to login page
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header("Location: login.html");
     exit();
@@ -20,7 +22,9 @@ if (empty($Contactemail) || empty($password)) {
 $stmt = $link->prepare("SELECT company_ID, CompanyName, password FROM company_account WHERE Contactemail = ?");
 $stmt->execute([$Contactemail]);
 
+
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
+// If user exists, verify password and set session variables, then redirect to home page. Otherwise, show error message.
 if ($row) {
     $company_ID = $row['company_ID'];
     $CompanyName = $row['CompanyName'];
@@ -30,6 +34,8 @@ if ($row) {
     if (password_verify($password, $hashed_password)) {
         $_SESSION['company_ID'] = $company_ID;
         $_SESSION['CompanyName'] = $CompanyName;
+        $stmt = $link->prepare("UPDATE company_account SET accountStatus = 'Active' WHERE company_ID = :cid");
+        $stmt->execute([':cid' => $company_ID]);
         header("Location: HomeLoggedIn.php");
         exit();
     } else {

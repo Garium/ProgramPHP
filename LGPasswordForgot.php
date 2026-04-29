@@ -1,7 +1,8 @@
 <?php
-
+//database connection
 require 'conn_db.php';
 
+//check if the form is submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 if(isset($_POST['passwordForgot'])){
 // Get form data
@@ -47,31 +48,39 @@ if ($updateStmt->execute([$hashed_password, $company_ID])) {
 }
 }
 ?>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Vidaloka&display=swap" rel="stylesheet">
+<html lang="en">
+	<!-- Styling and structure of the website page -->
 	<style>
 	#submitButton {
 	font-family: "Vidaloka", serif;
 	font-weight: 400;
 	font-style: normal;
-	background-color:#2e2b33;
-	color:#542e89;
+	background-color: #2e2b33;
+	color: #542e89;
 }
-	h3{
+	h1,h3{
 	font-family: "Vidaloka", serif;
 	font-weight: 400;
 	font-style: normal;
-	background-color:#000000;
-	color:#542e89;
+	color: #d6bcfa;
 }
 	#box1{width:70rem;   
 	margin-left: auto;
 	margin-right: auto;
 	text-align: center;}
-			</style>
 
-<html lang="en">
+	#goLeft{float:left;margin:0px 0px 0px 0px;display: block;}
+
+  	#PasswordForgot{float:center;display: block}
+
+  	 #identifier {
+	font-family: "Vidaloka", serif;
+	font-weight: 400;
+	font-style: normal;
+	color: #5c1eb3
+	}
+	</style>
+
 
   <head>
     <!-- Required meta tags -->
@@ -87,31 +96,25 @@ if ($updateStmt->execute([$hashed_password, $company_ID])) {
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Marck+Script&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-	
-	<style>
-	  #goLeft{float:left;margin:0px 0px 0px 0px;display: block;}
-  #PasswordForgot{float:center;display: block}
-  	h1, #identifier {
-	font-family: "Vidaloka", serif;
-	font-weight: 400;
-	font-style: normal;
-	color: #5c1eb3
-	}
-	</style>
-	<title>Forgot Pasword</title>
+
+	<!-- Title of the page -->
+	<title>Forgot Password</title>
   </head>
   <body style="background-color: #2A2334;">
-<img src="IMG/Logo.svg" alt="IMG/Logo.svg" width="175" height="175" id="goLeft">
- <div class="container" id="PasswordForgot" style="background-color: #2A2334;color: #5c1eb3; border-color:#000000">
+	<!-- Logo of the website -->
+<img src="IMG/Logo.JPG" alt="IMG/Logo.jpg" width="175" height="175" id="goLeft">
+ <div class="container" id="PasswordForgot" style="background-color: #2A2334;color: #d6bcfa;
+; border-color:#000000">
 	<h1 class="text-center" id="PasswordForgot">New Password</h1>
 	<div class="row" style="background-color: #2A2334;border-color:#000000">
 		<div class="col-sm" >
 		  
-		  <div class="card" style="background-color: #2A2334;color: #5c1eb3; border-color:#000000">
-  <div class="card-header" id="identifier" style="background-color: #2e2b33;color: #5c1eb3; border-color:#000000">
+		  <div class="card" style="background-color: #2A2334;color: #d6bcfa; border-color:#000000">
+  <div class="card-header" style="background-color: #2e2b33;color: #d6bcfa; border-color:#000000">
     New Password
   </div>
-  <div class="card-body"  style="background-color: #432f5e;color: #5c1eb3; border-color:#000000">
+  <div class="card-body"  style="background-color: #432f5e;color: #d6bcfa; border-color:#000000">
+	<!-- Form for users to input their email and new password -->
 		<form action="" method="POST">
 			<div class="row">
 				<div class="form-group col-md-6">

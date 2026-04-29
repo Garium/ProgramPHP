@@ -1,19 +1,18 @@
 <?php
+//navigation bar and database connection
 require 'conn_db.php';
-
 include 'includes/nav.php';
-
-
 ?>
 <html>
 <head>
+	<!-- Title of the page -->
 	<title> Home </title>  
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Vidaloka&display=swap" rel="stylesheet">
 </head>
+    <!-- Styling of the website page -->
 	<style>
-
 	.Box {
 	font-family: "Vidaloka", serif;
 	font-weight: 400;
@@ -64,6 +63,7 @@ include 'includes/nav.php';
         ?>
     </div>
 	<div class = "Box">
+		<!-- Welcome message and description of the website -->
 	<p id = "fontChange">
 	Weclome to Sustain Energy<br>This site is dedicated to the valuation of the companies on their efforts to be green<br>Log in and take part in our rubric to see how you do<br>Once your done, and donate for green vouchers any points you missed out on, you'll have an official certificate<br>they come in gold, silver or bronze, so aim for the highest one
 	</p>
@@ -71,8 +71,6 @@ include 'includes/nav.php';
 </body>
 </html>
 <?php
-
+//footer
 include 'includes/FooterLoggedIn.php';
-
-
 ?>

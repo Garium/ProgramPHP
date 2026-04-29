@@ -1,5 +1,7 @@
 <?php
+//ob_start is used to start output buffering, so header redirection occurs after output has been generated
 ob_start();
+// includes the database connection and navigation bar
 include 'includes/nav.php';
 require 'conn_db.php';
 
