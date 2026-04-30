@@ -32,6 +32,7 @@ require 'conn_db.php';
       to receive a certification for that score, either bronze, silver or gold. IF the company has failed to get a perfect score, they will be expected to purchase a certain
       number of green vouchers for their certificates, these purchase will get donated to good causes in efforts for sustainability.  
     </p>
+    <h2> Privacy Policy </h2>
     <p>
       As Part of our efforts, Sustain Energy is committed to protecting the privacy of our users. We will not share any of your information with third parties, and we will 
       only use your information for the purposes of providing our services to you. We may collect certain information from you, such as your name, email address, phone 

@@ -56,7 +56,7 @@ require 'conn_db.php';
         $images = [
             'IMG/HPSustainable1.jpg',
             'IMG/Sustainability2.jpg',
-            'IMG/HPSustainable1.jpg'
+            'IMG/Sustainability3.avif'
         ];
 
         // Loop through images and display
@@ -70,7 +70,8 @@ require 'conn_db.php';
 	<p id = "fontChange">
 	Welcome to Sustain Energy<br>This site is dedicated to the valuation of the companies on their efforts to be green and Sustainable<br>Log in and take part in our rubric
 	to see how you do<br>Once your done, and donate for green vouchers any points you missed out on, you'll have an official certificate<br>they come in gold, silver or
-	 bronze, so aim for the highest one.
+	bronze, so aim for the highest one, the max score is 100 green points.<br> Warning, this site expects users to enter accurate answers in the rubric, with 
+	consideration to Good Corporate Citizenship
 	</p>
 
 	</div>
