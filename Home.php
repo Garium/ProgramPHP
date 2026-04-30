@@ -1,7 +1,13 @@
-	<style>
+	<html>
+<head>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Vidaloka&display=swap" rel="stylesheet">
+	<!-- title of the website page -->
+	<title> Home </title>   
+</head>
+<!-- CSS styles for the website page -->
+<style>
 	.Box {
 	font-family: "Vidaloka", serif;
 	font-weight: 400;
@@ -15,7 +21,7 @@
 	font-family: "Vidaloka", serif;
 	font-weight: 400;
 	font-style: normal;
-	color:#2a2334;
+	color:#b794f6;
 	font-size: 133%;
 	}
 	
@@ -27,6 +33,7 @@
             display: flex;
             justify-content: center; 
             gap: 16%; 
+			background-color:#432F5E;
         }
         .image-container img {
             width: 16%; 
@@ -35,22 +42,19 @@
 	</style>
 
 <?php
-
+// includes the navigation bar and database connection
 include 'includes/navIndex.php';
 
 require 'conn_db.php';
 		
 ?>
-<html>
-<head>
-	<title> Home </title>   
-</head>
+
 <body id = "Override">
     <div class="image-container">
         <?php
         // Array of image sources
         $images = [
-            'IMG/HPSustainable1.JPG',
+            'IMG/HPSustainable1.jpg',
             'IMG/HPSustainable1.jpg',
             'IMG/HPSustainable1.jpg'
         ];
@@ -62,13 +66,17 @@ require 'conn_db.php';
         ?>
     </div>
 	<div class = "Box">
+	<!-- Welcome message and description of the website -->
 	<p id = "fontChange">
-	Weclome to Sustain Energy<br>This site is dedicated to the valuation of the companies on their efforts to be green<br>Log in and take part in our rubric to see how you do<br>Once your done, and donate for green vouchers any points you missed out on, you'll have an official certificate<br>they come in gold, silver or bronze, so aim for the highest one
+	Welcome to Sustain Energy<br>This site is dedicated to the valuation of the companies on their efforts to be green and Sustainable<br>Log in and take part in our rubric
+	to see how you do<br>Once your done, and donate for green vouchers any points you missed out on, you'll have an official certificate<br>they come in gold, silver or
+	 bronze, so aim for the highest one.
 	</p>
+
 	</div>
 </body>
 <?php
-mysqli_close($link);
+// includes the footer of the website page
 
 include 'includes/Footer.php';
 

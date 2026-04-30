@@ -1,5 +1,5 @@
 <?php
-
+ob_start();
 include 'includes/nav.php';
 
 # Check if points_needed parameter exists
@@ -8,8 +8,11 @@ if (isset($_GET['points_needed'])) {
 	$points = 100 - $points_needed;
 	
 	if(isset($_POST['proceedToPurchase'])){
+        ob_end_clean();
 		header("Location: purchase_points.php?points_needed=$points_needed");
+        exit;
 	}
+
     ?>
     <!DOCTYPE html>
     <html>
@@ -23,7 +26,7 @@ if (isset($_GET['points_needed'])) {
                 font-family: "Vidaloka", serif;
                 font-weight: 400;
                 font-style: normal;
-                color: #542e89;
+                color: #d6bcfa;
             }
             #box1 {
                 width: 100%;
@@ -37,20 +40,20 @@ if (isset($_GET['points_needed'])) {
     <body style="background-color:#2A2334;">
         <div id="box1" style="margin-top:50px;">
             <h1>Purchase Green vouchers</h1>
-            <p>You earned <?php echo $points; ?> points, purchase a voucher to make up the additional <strong><?php echo $points_needed; ?></strong> points needed to reach 100 points and recieve a certificate.</p>
+            <p>You earned <?php echo $points; ?> green points, purchase a green voucher to make up the additional <strong><?php echo $points_needed; ?></strong> points needed to reach 100 green points and receive a certificate.</p>
         </div>
 		<div id="box1" style="margin-top:10px;">
             <form action=""  method="POST">
-                <button type="submit" name="proceedToPurchase" style="font-size:20px;padding:10px 20px;background-color:#2A2334;color: #542e89;">Proceed to purchase</button>
+                <button type="submit" name="proceedToPurchase" style="font-size:20px;padding:10px 20px;background-color:#2A2334;color: #d6bcfa;">Proceed to purchase</button>
             </form>
 		</div>
     </body>
     </html>
-    <?php
-}
 
-?>
+
 
 <?php
+}
 include 'includes/Footer.php';
+ob_end_flush();
 ?>

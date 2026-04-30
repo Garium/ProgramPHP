@@ -1,5 +1,5 @@
 <style>
-	.links{		color: #5c00DE;margin-left:5px;
+	.links{		color: #b794f6;margin-left:5px;
 }
 	.text{color:#5c1eb3}
 	
@@ -16,7 +16,7 @@
           <!-- Grid column -->
           <div class="col-md-2">
             <h6 class="text-uppercase font-weight-bold">
-              <a href="About us.php" class="links">About us</a>
+              <a href="AboutUs.php" class="links">About us</a>
             </h6>
           </div>
           <!-- Grid column -->
@@ -47,7 +47,7 @@
       <section class="mb-5">
         <div class="row d-flex justify-content-center">
           <div class="col-lg-8">
-            <p class="text">
+            <p class="text" style=" color:#b794f6;">
 				Sustain Energy is a charitable organisation, all proceeds from this website goes to operation costs and put towards good causes for efforts of sustainability
             </p>
           </div>
@@ -59,12 +59,10 @@
 
     <!-- Copyright -->
     <div
-         class="text"
+         class="text" style=" color:#b794f6;"
          >
-              ©2025 www.SustainEnergy.com - All Rights Reserved.
+              ©2026 www.SustainEnergy.com - All Rights Reserved.
     </div>
     <!-- Copyright -->
   </footer>
   <!-- Footer -->
-</div>
-<!-- End of .container -->

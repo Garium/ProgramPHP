@@ -7,7 +7,13 @@
 $CompanyName = trim($_POST['CompanyName']);
 $Contactemail = trim($_POST['Contactemail']);
 $password = trim($_POST['password']);
-
+$card_name = $_POST['card_name'];
+$card_number = $_POST['card_number'];
+$expiry = $_POST['expiry'];
+$cvv = $_POST['cvv'];
+if (strlen($card_number) < 12) {
+	die("Invalid card number!");
+}
 // Basic validation
 if (empty($CompanyName) || empty($Contactemail) || empty($password)) {
     die("All fields are required.");
@@ -25,30 +31,32 @@ if (!preg_match($passwordPattern, $password)) {
 }
 
 // Check if email already exists
-$stmt = $link->prepare("SELECT company_ID FROM company_account WHERE Contactemail = ?");
-$stmt->bind_param("s", $Contactemail);
-$stmt->execute();
-$stmt->store_result();
-if ($stmt->num_rows > 0) {
+$stmt = $link->prepare("SELECT company_ID FROM company_account WHERE Contactemail = :email");
+$stmt->execute([':email' => $Contactemail]);
+if ($stmt->rowCount() > 0) {
     die("Email already registered.");
 }
-$stmt->close();
+$stmt = null;
 
 // Hash password
 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
 // Insert new user
-$stmt = $link->prepare("INSERT INTO company_account (CompanyName, Contactemail, password) VALUES (?, ?, ?)");
-$stmt->bind_param("sss", $CompanyName, $Contactemail, $hashed_password);
+$stmt = $link->prepare("INSERT INTO company_account (CompanyName, Contactemail, password) VALUES (:company_name, :email, :password)");
+$result = $stmt->execute([
+    ':company_name' => $CompanyName,
+    ':email' => $Contactemail,
+    ':password' => $hashed_password
+]);
 
-if ($stmt->execute()) {
+if ($result) {
     // Redirect to login page
     header("Location: HomeLoggedIn.php");
     exit();
 } else {
-    echo "Error: " . $stmt->error;
+    echo "Error: " . $stmt->errorInfo()[2];
 }
 
-$stmt->close();
-$l->close();
+$stmt = null;
+$link = null;
 ?>

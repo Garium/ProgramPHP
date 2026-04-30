@@ -1,31 +1,23 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the
-// README at: https://github.com/devcontainers/templates/tree/main/src/php
 {
-	"name": "PHP",
-	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/php:3-8.5-trixie",
+  "name": "PHP + MySQL",
+  "image": "mcr.microsoft.com/devcontainers/php:8.2",
 
-// Configure tool-specific properties.
-"customizations": {
-  // Configure properties specific to VS Code.
-  "vscode": {
-    "extensions": [
-      "ikappas.composer"
-    ]
-  }
-},
+  "customizations": {
+    "vscode": {
+      "extensions": ["ikappas.composer"]
+    }
+  },
 
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	"forwardPorts": [
-		8080
-	],
-	"features": {
-		"ghcr.io/devcontainers/features/github-cli:1": {}
-	},
+  "forwardPorts": [8080],
 
-	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "sudo chmod a+x \"$(pwd)\" && sudo rm -rf /var/www/html && sudo ln -s \"$(pwd)\" /var/www/html; if [ -f composer.json ];then composer install;fi"
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
 
-	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-	// "remoteUser": "root"
+  "postCreateCommand": "sudo chmod a+x \"$(pwd)\" && sudo rm -rf /var/www/html && sudo ln -s \"$(pwd)\" /var/www/html && sudo -E docker-php-ext-install pdo_mysql mysqli && if [ -f composer.json ]; then composer install; fi",
+
+"postStartCommand": "sudo apache2ctl start",
+"portsAttributes": {
+  "8080": { "onAutoForward": "openBrowser" }
+}
 }

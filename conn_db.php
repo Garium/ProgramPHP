@@ -1,21 +1,21 @@
 <?php
-
-$uri = "MYSQL_URI";
-
-$fields = parse_url($uri);
-
-// build the DSN including SSL settings
-$link = "mysql:";
-$link .= "host=" . $fields["host"];
-$link .= ";port=" . $fields["port"];;
-$link .= ";dbname=defaultdb";
-$link .= ";sslmode=verify-ca;sslrootcert='D:/absolute/path/to/ssl/certs/ca.pem'";
-
 try {
-    $db = new PDO($link, $fields["user"], $fields["pass"]);
+    $host    = 'gradedunit1-benmacphee1-b4b3.c.aivencloud.com';
+    $port    = 17172;                    
+    $db      = 'gradedunit';              
+    $user    = 'avnadmin';
+    $pass    = 'AVNS_J-oEd11luXOcdaQHysb';
+    $charset = 'utf8mb4';
+    $caPath  = __DIR__ . '/ca.pem';         
 
-    $stmt = $db->query("SELECT VERSION()");
-    print($stmt->fetch()[0]);
-} catch (Exception $e) {
-    echo "Error: " . $e->getMessage();
+    $dsn = "mysql:host=$host;port=$port;dbname=$db;charset=$charset";
+
+    $link = new PDO($dsn, $user, $pass, [
+        PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        PDO::ATTR_EMULATE_PREPARES   => false,
+        PDO::MYSQL_ATTR_SSL_CA       => $caPath]);
+
+} catch (PDOException $e) {
+    echo "Connection failed: " . $e->getMessage();
 }

@@ -1,0 +1,25 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "xprotocol",
+                "enableSsl": "Disabled"
+            },
+            "ssh": "Disabled",
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 33060,
+            "driver": "MySQL",
+            "name": "MySQL local",
+            "database": "gradedunit",
+            "username": "root",
+            "connectionTimeout": 30,
+            "password": ""
+        }
+    ],
+    "cSpell.words": [
+        "colour",
+        "Contactemail",
+        "organisation"
+    ]
+}

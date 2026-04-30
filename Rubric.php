@@ -1,374 +1,162 @@
-
 <?php
-
+//ob_start is used to start output buffering, so header redirection occurs after output has been generated
+ob_start();
+// includes the database connection and navigation bar
 include 'includes/nav.php';
-
 require 'conn_db.php';
 
-ob_start()
-?>
-
-<html lang="en">
-<style>
-.radio-label {
-   display: inline-block;
-    vertical-align: top;
-    margin-right: 3%;
-}
-.radio-input {
-   display: inline-block;
-    vertical-align: top;
-}
-fieldset {
-    text-align: center;
-}
-.divForm {
-    margin: auto;
-    border: 1px solid black;
-}
-</style>
-<body style="background-color: #432f5e;">  
-
-<form name="RubricForm" action="" style="background-color: #432f5efloat:center" method="POST">
-    <fieldset>
-        <legend>Does your company take significant efforts to reduce it's carbon emissions  through energy-efficient practices, renewable energy sources, and emission reduction initiatives:</legend>
-        <div class="divForm">
-	<label class="radio-label">
-        <input class="radio-input" type="radio" name="Q1" 
-               value="Red"> Red
-    </label>
-    <label class="radio-label">
-        <input class="radio-input" type="radio" name="Q1" 
-               value="Yellow"> Yellow
-    </label>
-    <label class="radio-label">
-        <input class="radio-input" type="radio" name="Q1" 
-               value="Green"> Green 
-    </label>
-        </div>
-    </fieldset>
-	    <fieldset>
-        <legend>Does your company derive a high percentage of it's companies energy consumption from renewablesources such as solar, wind, or hydropower:</legend>
-        <div class="divForm">
-	<label class="radio-label">
-        <input class="radio-input" type="radio" name="Q2" 
-               value="Red"> Red
-    </label>
-    <label class="radio-label">
-        <input class="radio-input" type="radio" name="Q2" 
-               value="Yellow"> Yellow
-    </label>
-    <label class="radio-label">
-        <input class="radio-input" type="radio" name="Q2" 
-               value="Green"> Green 
-    </label>
-        </div>
-    </fieldset>
-	    <fieldset>
-        <legend>Does your company Fully commit to minimising waste generation and increasing recycling rates:</legend>
-        <div class="divForm">
-	<label class="radio-label">
-        <input class="radio-input" type="radio" name="Q3" 
-               value="Red"> Red
-    </label>
-    <label class="radio-label">
-        <input class="radio-input" type="radio" name="Q3" 
-               value="Yellow"> Yellow
-    </label>
-    <label class="radio-label">
-        <input class="radio-input" type="radio" name="Q3" 
-               value="Green"> Green 
-    </label>
-        </div>
-    </fieldset>
-	    <fieldset>
-        <legend>Does your company Ensure the sustainability of the company's supply chian, considering the environmental impact of raw material sourcing and transportation:</legend>
-        <div class="divForm">
-	<label class="radio-label">
-        <input class="radio-input" type="radio" name="Q4" 
-               value="Red"> Red
-    </label>
-    <label class="radio-label">
-        <input class="radio-input" type="radio" name="Q4" 
-               value="Yellow"> Yellow
-    </label>
-    <label class="radio-label">
-        <input class="radio-input" type="radio" name="Q4" 
-               value="Green"> Green 
-    </label>
-        </div>
-    </fieldset>	
-	    <fieldset>
-        <legend>Is your company energy efficient in it's buildings, facilities and Manufacturing Processes:</legend>
-        <div class="divForm">
-	<label class="radio-label">
-        <input class="radio-input" type="radio" name="Q5" 
-               value="Red"> Red
-    </label>
-    <label class="radio-label">
-        <input class="radio-input" type="radio" name="Q5" 
-               value="Yellow"> Yellow
-    </label>
-    <label class="radio-label">
-        <input class="radio-input" type="radio" name="Q5" 
-               value="Green"> Green 
-    </label>
-        </div>
-    </fieldset>		
-	    <fieldset>
-        <legend>Does your company ensure the services or product that they provide have environmentally friendly attributes:</legend>
-        <div class="divForm">
-	<label class="radio-label">
-        <input class="radio-input" type="radio" name="Q6" 
-               value="Red"> Red
-    </label>
-    <label class="radio-label">
-        <input class="radio-input" type="radio" name="Q6" 
-               value="Yellow"> Yellow
-    </label>
-    <label class="radio-label">
-        <input class="radio-input" type="radio" name="Q6" 
-               value="Green"> Green 
-    </label>
-        </div>
-    </fieldset>		
-	    <fieldset>
-        <legend>Does your company Engage with programs or initiatives for carbon offsetting to compensate for it's unavoidable emssions:</legend>
-        <div class="divForm">
-	<label class="radio-label">
-        <input class="radio-input" type="radio" name="Q7" 
-               value="Red"> Red
-    </label>
-    <label class="radio-label">
-        <input class="radio-input" type="radio" name="Q7" 
-               value="Yellow"> Yellow
-    </label>
-    <label class="radio-label">
-        <input class="radio-input" type="radio" name="Q7" 
-               value="Green"> Green 
-    </label>
-        </div>
-    </fieldset>	
-	    <fieldset>
-        <legend>Does your company Adhere to enviromental standards and regulations, ensuring a compliance with the law:</legend>
-        <div class="divForm">
-	<label class="radio-label">
-        <input class="radio-input" type="radio" name="Q8" 
-               value="Red"> Red
-    </label>
-    <label class="radio-label">
-        <input class="radio-input" type="radio" name="Q8" 
-               value="Yellow"> Yellow
-    </label>
-    <label class="radio-label">
-        <input class="radio-input" type="radio" name="Q8" 
-               value="Green"> Green 
-    </label>
-        </div>
-    </fieldset>	
-		    <fieldset>
-        <legend>Does your company consider the entire lifecycle of it's service or product, from  raw material extraction to disposal:</legend>
-        <div class="divForm">
-	<label class="radio-label">
-        <input class="radio-input" type="radio" name="Q9" 
-               value="Red"> Red
-    </label>
-    <label class="radio-label">
-        <input class="radio-input" type="radio" name="Q9" 
-               value="Yellow"> Yellow
-    </label>
-    <label class="radio-label">
-        <input class="radio-input" type="radio" name="Q9" 
-               value="Green"> Green 
-    </label>
-        </div>
-    </fieldset>	
-		    <fieldset>
-        <legend>Does your company make an effort to ensure employees and educated and engaging in sustainability practices in and out of the workplace:</legend>
-        <div class="divForm">
-	<label class="radio-label">
-        <input class="radio-input" type="radio" name="Q0" 
-               value="Red"> Red
-    </label>
-    <label class="radio-label">
-        <input class="radio-input" type="radio" name="Q0" 
-               value="Yellow"> Yellow
-    </label>
-    <label class="radio-label">
-        <input class="radio-input" type="radio" name="Q0" 
-               value="Green"> Green 
-    </label>
-        </div>
-    </fieldset>
-	
-	
-	<div style="float:center">
-	<button class="btn btn-block" name="Rubric_Submit" style="background-color: #2e2b33;color: #543e89;width: 80%;margin-left:10%;" id="identifier" type="submit">Register  </button>
-	</div>
-	
-	
-	
-</form>
-</body>
-</html>
-
-<?php
 $error_message = "";
-if(isset($_POST['Rubric_Submit'])){
-	$company_ID = $_SESSION['company_ID'];
-	if (isset($_POST['Q1'])){
-	$Q1 = $_POST['Q1'];
-	} else {
-	$Q1 = '';
-	} 
-	if (isset($_POST['Q2'])){
-	$Q2 = trim($_POST['Q2']);
-	} else {
-	$Q2 = '';
-	} 
-	if (isset($_POST['Q3'])){
-	$Q3 = $_POST['Q3'];
-	} else {
-	$Q3 = '';
-	} 
-	if (isset($_POST['Q4'])){
-	$Q4 = trim($_POST['Q4']);
-	} else {
-	$Q4 = '';
-	} 
-	if (isset($_POST['Q5'])){
-	$Q5 = $_POST['Q5'];
-	} else {
-	$Q5 = '';
-	} 
-	if (isset($_POST['Q6'])){
-	$Q6 = trim($_POST['Q6']);
-	} else {
-	$Q6 = '';
-	} 
-	if (isset($_POST['Q7'])){
-	$Q7 = $_POST['Q7'];
-	} else {
-	$Q7 = '';
-	} 
-	if (isset($_POST['Q8'])){
-	$Q8 = trim($_POST['Q8']);
-	} else {
-	$Q8 = '';
-	} 
-	if (isset($_POST['Q9'])){
-	$Q9 = $_POST['Q9'];
-	} else {
-	$Q9 = '';
-	} 
-	if (isset($_POST['Q0'])){
-	$Q0 = trim($_POST['Q0']);
-	} else {
-	$Q0 = '';
-	} 
-	$Qarray = array($Q1,$Q2,$Q3,$Q4,$Q5,$Q6,$Q7,$Q8,$Q9,$Q0);
-	$QTotal = 0;
-	foreach ($Qarray as $x){
-	if (empty($x)) {
-		$error_message = "Please Submit all answers";
-	}
-	}
-	if (empty($error_message)){
-	foreach ($Qarray as $x){
-		if ($x == "Red") {
-	}
-	elseif ($x == "Yellow") {
-		$QTotal = $QTotal + 5;
-	}
-	else{
-		$QTotal = $QTotal + 10;
-	}
-	}
-	echo $QTotal;
-	if ($QTotal >= 90) {
-		$certificate_Level = "Gold";
-	}
-	elseif ($QTotal  >= 50) {
-		$certificate_Level = "Silver";
-	}
-	else{
-		$certificate_Level = "Bronze";
-	}
-	
-	$date = date("Y/m/d");
-	
-	$stmt = $link->prepare("INSERT INTO account_rubrics (Company_ID,Rubric_date,points,certificate_Level) VALUES (?, ?, ?,?)");
-	if (!$stmt) {
-    die("Prepare failed: (" . $link->errno . ") " . $link->error);
-}
-	$stmt->bind_param("isis", $company_ID, $date, $QTotal, $certificate_Level);
 
-	if ($stmt->execute()) {
-    $Rubric_ID = $link->insert_id;
-		if ($QTotal == 100){
-			function getRandomString($n) {
-				return bin2hex(random_bytes($n / 2));
-			}
-			$certificateAchieved = true;
-			$certificate_Ref = getRandomString(50);
-			$voucherPoints = 0;
-			$amountPaid = 0.00;
-			$stmt = $link->prepare("INSERT INTO certificate_progress (Rubric_ID,certificate_Ref,Voucher_Points,amount_Paid,Certificate_Achieved) VALUES (?, ?, ?,?,?)");
-			$stmt->bind_param("isiii",$Rubric_ID,$certificate_Ref,$voucherPoints,$amountPaid, $certificateAchieved);
-			if (!$stmt) {
-				die("Prepare failed: (" . $link->errno . ") " . $link->error);
-			}
-			if ($stmt->execute()) {
-				header("Location: certificate.php");
-				ob_end_flush();
-				exit();
-			}else {
-				echo "Error: " . $stmt->error;
-			}
-		}
-		else {
-			function getRandomString($n) {
-				return bin2hex(random_bytes($n / 2));
-			}
-			$certificateAchieved = false;
-			$certificate_Ref = getRandomString(50);
-			$voucherPoints = 0;
-			$amountPaid = 0.00;
-			$stmt = $link->prepare("INSERT INTO certificate_progress (Rubric_ID,certificate_Ref,Voucher_Points,amount_Paid,Certificate_Achieved) VALUES (?, ?, ?,?,?)");
-			$stmt->bind_param("isiii",$Rubric_ID,$certificate_Ref,$voucherPoints,$amountPaid, $certificateAchieved);
-			if (!$stmt) {
-				die("Prepare failed: (" . $link->errno . ") " . $link->error);
-			}
-			if ($stmt->execute()) {
-				$points_needed = 100 - $QTotal;
-				header("Location: cart.php?points_needed=$points_needed");
-				ob_end_flush();
-				exit();			
-			}else {
-				echo "Error: " . $stmt->error;
-			}
-		}
-	
-
-	} else {
-		echo "Error3: " . $stmt->error;
-	}
-	
-	}
+// Function to generate a random string for certificate reference
+function getRandomString($n) {
+    return bin2hex(random_bytes($n / 2));
 }
+
+// Check if the rubric form has been submitted
+if (isset($_POST['Rubric_Submit'])) {
+    $company_ID = $_SESSION['company_ID'];
+
+    // Collect all 10 answers in an array 
+    $questions = ['Q1','Q2','Q3','Q4','Q5','Q6','Q7','Q8','Q9','Q0'];
+    $answers   = [];
+    foreach ($questions as $q) {
+        $answers[$q] = isset($_POST[$q]) ? trim($_POST[$q]) : '';
+    }
+
+    // Validate: all answered
+    if (in_array('', $answers, true)) {
+        $error_message = "Please submit all answers.";
+    } else {
+        // Score
+        $QTotal = 0;
+        foreach ($answers as $val) {
+            if ($val === 'Yellow')      $QTotal += 5;
+            elseif ($val === 'Green')   $QTotal += 10;
+            // Red = 0
+        }
+
+        // Certificate level
+        if     ($QTotal >= 90) $certificate_Level = "Gold";
+        elseif ($QTotal >= 50) $certificate_Level = "Silver";
+        else                   $certificate_Level = "Bronze";
+
+        $date = date("Y-m-d");   
+
+        // Insert rubric
+        try{
+            $stmt = $link->prepare(
+            "INSERT INTO account_rubrics (Company_ID, Rubric_date, points, certificate_Level)
+             VALUES (:company_ID, :date, :QTotal, :certificate_Level)"
+            );
+
+            $result = $stmt->execute([
+            ':company_ID' => $company_ID,
+            ':date' => $date,
+            ':QTotal' => $QTotal,
+            ':certificate_Level' => $certificate_Level
+            ]);
+
+            $Rubric_ID = $link->lastInsertId();
+
+            // Insert certificate_progress (unified — was duplicated in two branches)
+            $certificateAchieved = ($QTotal == 100) ? 1 : 0;
+            $certificate_Ref     = getRandomString(50);
+            $voucherPoints       = 0;
+            $amountPaid          = 0.00;
+
+            $stmt = $link->prepare(
+            "INSERT INTO certificate_progress
+             (Rubric_ID, certificate_Ref, Voucher_Points, amount_Paid, Certificate_Achieved)
+             VALUES (:Rubric_ID, :certificate_Ref, :Voucher_Points, :amount_Paid, :Certificate_Achieved)"
+            );
+
+            $stmt->execute([
+            ':Rubric_ID' => $Rubric_ID,
+            ':certificate_Ref' => $certificate_Ref,
+            ':Voucher_Points' => $voucherPoints,
+            ':amount_Paid' => $amountPaid,
+            ':Certificate_Achieved' => $certificateAchieved
+            ]);
+
+
+            // Redirect — works because no HTML has been output yet
+            if ($QTotal == 100) {
+                header("Location: certificate.php");
+            } else {
+                $points_needed = 100 - $QTotal;
+                header("Location: cart.php?points_needed=" . urlencode($points_needed));
+            }
+            exit();
+        } catch(PDOException $e) {
+            $error_message = "error: " . $e->getMessage();
+        }
+    }
+}
+
 ?>
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Sustainability Rubric</title>
+    <style>
+        body { background-color: #432f5e; color: #f3eaff; font-family: sans-serif; }
+        .radio-label  { display: inline-block; vertical-align: top; margin-right: 3%; }
+        .radio-input  { display: inline-block; vertical-align: top; }
+        fieldset      { text-align: center; margin: 1rem auto; max-width: 800px;
+                        border: 1px solid #b794f6; border-radius: 8px; padding: 1rem; }
+        legend        { padding: 0 .5rem; }
+        .divForm      { margin: auto; padding: .5rem; }
+        .submit-btn   { background-color: #2e2b33; color: #b794f6;
+                        width: 80%; margin: 1rem 10%; padding: .75rem; border: none;
+                        border-radius: 6px; cursor: pointer; font-size: 1rem; }
+        .submit-btn:hover { background-color: #1f1c24; }
+        .error-msg    { margin: 1rem auto; text-align: center; font-size: 1.5rem;
+                        color: #ffb4b4; }
+    </style>
+</head>
 <body>
+
 <?php if (!empty($error_message)): ?>
-    <div style="margin-bottom: 0px; text-align: center;font-size:3vw;">
-        <?php echo htmlspecialchars($error_message); ?>
-    </div>
+    <div class="error-msg"><?= htmlspecialchars($error_message) ?></div>
 <?php endif; ?>
-</body>
-</html>
 
 <?php
-	include 'includes/FooterLoggedIn.php';
-
+// All ten questions in one array — single source of truth, easy to edit
+$rubricQuestions = [
+    'Q1' => "Does your company take significant efforts to reduce its carbon emissions through energy-efficient practices, renewable energy sources, and emission reduction initiatives?",
+    'Q2' => "Does your company derive a high percentage of its energy consumption from renewable sources such as solar, wind, or hydropower?",
+    'Q3' => "Does your company fully commit to minimising waste generation and increasing recycling rates?",
+    'Q4' => "Does your company ensure the sustainability of its supply chain, considering the environmental impact of raw material sourcing and transportation?",
+    'Q5' => "Is your company energy efficient in its buildings, facilities and manufacturing processes?",
+    'Q6' => "Does your company ensure the services or products that it provides have environmentally friendly attributes?",
+    'Q7' => "Does your company engage with programs or initiatives for carbon offsetting to compensate for its unavoidable emissions?",
+    'Q8' => "Does your company adhere to environmental standards and regulations, ensuring compliance with the law?",
+    'Q9' => "Does your company consider the entire lifecycle of its services or products, from raw material extraction to disposal?",
+    'Q0' => "Does your company make an effort to ensure employees are educated and engaging in sustainability practices in and out of the workplace?",
+];
 ?>
 
+<form name="RubricForm" action="" method="POST">
+<?php foreach ($rubricQuestions as $name => $text): ?>
+    <fieldset>
+        <legend><?= htmlspecialchars($text) ?></legend>
+        <div class="divForm">
+            <?php foreach (['Red','Yellow','Green'] as $colour): ?>
+                <label class="radio-label">
+                    <input class="radio-input" type="radio"
+                           name="<?= $name ?>" value="<?= $colour ?>"
+                           <?= (($_POST[$name] ?? '') === $colour) ? 'checked' : '' ?>>
+                    <?= $colour ?>
+                </label>
+            <?php endforeach; ?>
+        </div>
+    </fieldset>
+<?php endforeach; ?>
+
+    <button class="submit-btn" name="Rubric_Submit" type="submit">Submit Rubric</button>
+</form>
+
+</body>
+</html>
+<?php include 'includes/FooterLoggedIn.php'; ?>
