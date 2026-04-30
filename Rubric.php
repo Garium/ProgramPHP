@@ -12,6 +12,13 @@ function getRandomString($n) {
     return bin2hex(random_bytes($n / 2));
 }
 
+// Check if the clear rubric button has been submitted
+if (isset($_POST['Rubric_Clear'])) {
+    header("Location: Rubric.php");
+
+}
+
+
 // Check if the rubric form has been submitted
 if (isset($_POST['Rubric_Submit'])) {
     $company_ID = $_SESSION['company_ID'];
@@ -98,7 +105,9 @@ if (isset($_POST['Rubric_Submit'])) {
 <html lang="en">
 <head>
     <meta charset="utf-8">
+	<!-- Title of the website page -->
     <title>Sustainability Rubric</title>
+	<!-- CSS styles for the website page -->
     <style>
         body { background-color: #432f5e; color: #f3eaff; font-family: sans-serif; }
         .radio-label  { display: inline-block; vertical-align: top; margin-right: 3%; }
@@ -153,10 +162,14 @@ $rubricQuestions = [
         </div>
     </fieldset>
 <?php endforeach; ?>
+	<!--Button to reset the choices selected -->
+    <button class="submit-btn" name="Rubric_Clear" type="submit">Clear Rubric</button>
 
     <button class="submit-btn" name="Rubric_Submit" type="submit">Submit Rubric</button>
 </form>
 
 </body>
 </html>
-<?php include 'includes/FooterLoggedIn.php'; ?>
+<?php 
+// includes the footer of the website page
+include 'includes/FooterLoggedIn.php'; ?>

@@ -5,8 +5,13 @@ ob_start();
 include 'includes/nav.php';
 require 'conn_db.php';
 
+//take companyID from session
 $company_ID = $_SESSION['company_ID'];
+
+//set all relevant variables to empty
 $certifice_ID = $certificate_Level = $certificate_Ref= $date = $CompanyName = "";
+
+//get all relevant variables from select statement
 $stmt = $link->prepare("SELECT certificate_progress.certifice_ID, certificate_progress.certificate_Ref, account_rubrics.certificate_Level, account_rubrics.Rubric_date , company_account.CompanyName
 FROM certificate_progress
 INNER JOIN account_rubrics ON certificate_progress.Rubric_ID=account_rubrics.Rubric_ID
@@ -14,9 +19,11 @@ INNER JOIN company_account ON company_account.company_ID=account_rubrics.company
 WHERE company_account.company_ID = ? AND certificate_progress.Certificate_Achieved = 1
 ORDER BY certificate_progress.certifice_ID DESC;");
 $stmt->bindParam(1, $company_ID, PDO::PARAM_INT);
+//attempt to execute statement
 try {
     $stmt->execute();
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    //if nothing is returned, no certificate exists
     if (!$row) {
     echo "<p style='color:#fff;text-align:center;margin-top:50px;'>
             You haven't completed the rubric yet.
@@ -24,6 +31,7 @@ try {
     include 'includes/FooterLoggedIn.php';
     exit();
     }
+    //assign variables to ones gotten during select statement 
     if ($row) {
         $certifice_ID = $row['certifice_ID'];
         $certificate_Ref = $row['certificate_Ref'];
@@ -31,14 +39,18 @@ try {
         $date = $row['Rubric_date'];
         $CompanyName = $row['CompanyName'];
     }
+    //return error if select fails
 } catch(PDOException $e) {
     $errorInfo = $stmt->errorInfo();
     echo "Error: " . $errorInfo[2];
 }
+//set default to bronze
 $classname = 'bronze';
+//change to gold if certificate is gold
 if($certificate_Level == "Gold"){
    $classname = 'gold';
  }
+ //change to silver if certificate is silver
 else if($certificate_Level == "Silver"){
    $classname = 'silver';
  }
@@ -51,7 +63,9 @@ else if($certificate_Level == "Silver"){
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- Title of the page -->
 <title>Certificate of Achievement</title>
+	<!-- Styling for the website page -->
 <style>
 body {
 
@@ -118,7 +132,7 @@ body {
 </style>
 </head>
 <body>
-
+	<!-- Styling dependant on if the certificate is gold, silver or bronze -->
 <div class="<?php echo $classname; ?>">
     <div class="certificate-header" style="color: <?php echo ($certificate_Level == 'Gold') ? '#856A00' : (($certificate_Level == 'Silver') ? '#A9A9A9' : '#CD8032'); ?>">
         Certificate of Achievement
@@ -144,6 +158,8 @@ body {
 </body>
 </html>
 
-<?php include 'includes/FooterLoggedIn.php';
+<?php 
+// includes the footer of the website page
+include 'includes/FooterLoggedIn.php';
 ob_end_flush();
 ?>

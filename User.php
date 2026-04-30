@@ -72,10 +72,15 @@ if (isset($_POST['Deactivate'])) {
     <link href="https://fonts.googleapis.com/css2?family=Vidaloka&display=swap" rel="stylesheet">
     <!-- Styling of the website page -->
     <style>
-        #submitButton, h3, .background {
+        h3, .background {
             font-family: "Vidaloka", serif;
             background-color: #2e2b33;
             color: #d6bcfa;
+        }
+        #submitButton{
+            font-family: "Vidaloka", serif;
+            background-color: #2e2b33;
+            color: #b794f6;
         }
     </style>
 </head>
@@ -148,7 +153,7 @@ if (isset($_POST['Deactivate'])) {
 </body>		
 </html>
 <?php 
-//footer
+// includes the footer of the website page
 include 'includes/FooterLoggedIn.php';
 ob_end_flush();
 ?>

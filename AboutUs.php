@@ -67,10 +67,10 @@ require 'conn_db.php';
         <?php
         // Array of image sources
         $images = [
-            'IMG/HPSustainable1.jpg',
-            'IMG/Sustainability2.jpg',
-            'IMG/Sustainability3.avif',
-			'IMG/Sustainability3.avif'
+            'IMG/CMPLogo1.JPG',
+            'IMG/CMPLogo2.JPG',
+            'IMG/CMPLogo3.JPG',
+			'IMG/collegelogo.png'
         ];
 
         // Loop through images and display
@@ -80,7 +80,7 @@ require 'conn_db.php';
         ?>
     </div>
 
-
+		
 		<section class="text-center mb-5">
 		<h3> Links to our social media Pages:</h3>
         <a href="https://www.facebook.com/" class="links">

@@ -1,8 +1,11 @@
 <?php
+//ob_start is used to start output buffering, so header redirection occurs after output has been generated
 ob_start();
-include 'includes/nav.php';
 
-# Check if points_needed parameter exists
+include 'includes/nav.php';
+// Include navigation bar
+
+// Check if points_needed parameter exists
 if (isset($_GET['points_needed'])) {
     $points_needed = intval($_GET['points_needed']);
 	$points = 100 - $points_needed;
@@ -17,10 +20,12 @@ if (isset($_GET['points_needed'])) {
     <!DOCTYPE html>
     <html>
     <head>
+<!-- Title of the page -->
         <title>Purchase Points</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Vidaloka&display=swap" rel="stylesheet">
+	<!-- Styling for the website page -->
         <style>
             h1, p, a, #fontChange {
                 font-family: "Vidaloka", serif;
@@ -44,7 +49,7 @@ if (isset($_GET['points_needed'])) {
         </div>
 		<div id="box1" style="margin-top:10px;">
             <form action=""  method="POST">
-                <button type="submit" name="proceedToPurchase" style="font-size:20px;padding:10px 20px;background-color:#2A2334;color: #d6bcfa;">Proceed to purchase</button>
+                <button type="submit" name="proceedToPurchase" style="font-size:20px;padding:10px 20px;background-color:#2A2334;color: #b794f6;">Proceed to purchase</button>
             </form>
 		</div>
     </body>
@@ -54,6 +59,7 @@ if (isset($_GET['points_needed'])) {
 
 <?php
 }
+// includes the footer of the website page
 include 'includes/Footer.php';
 ob_end_flush();
 ?>

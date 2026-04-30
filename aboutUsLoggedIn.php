@@ -33,7 +33,16 @@ require 'conn_db.php';
 	color:#b794f6;
 	font-size:35;
 }
-
+        .image-container {
+            display: flex;
+            justify-content: center; 
+            gap: 12.5%; 
+			background-color:#432F5E;
+        }
+        .image-container img {
+            width: 12.5%; 
+            height: auto; 
+        }
 			</style>
 
 <head>
@@ -53,10 +62,31 @@ require 'conn_db.php';
 		companies to adopt more sustainable practices and contribute to a more sustainable future for all.
 		</p>
 	</div>
+	<div id="box1">
+	<h3> Accredited By:</h3>
+	</div>
+    <div class="image-container">
+        <?php
+        // Array of image sources
+        $images = [
+            'IMG/CMPLogo1.JPG',
+            'IMG/CMPLogo2.JPG',
+            'IMG/CMPLogo3.JPG',
+			'IMG/collegelogo.png'
+        ];
+
+        // Loop through images and display
+        foreach ($images as $img) {
+            echo "<img src='$img' alt='Image'>";
+        }
+        ?>
+    </div>
+
 
 	
       <section class="text-center mb-5">
-        <a href="https://www.facebook.com/" class="links">
+		<h3> Links to our social media Pages:</h3>
+	 	 <a href="https://www.facebook.com/" class="links">
           <i id="links">facebook   </i>
         </a>
         <a href="https://x.com/" class="links">

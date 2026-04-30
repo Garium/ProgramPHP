@@ -103,7 +103,7 @@ if (isset($_GET['points_needed'])) {
             <input type="text" name="cvv" style="color: #5c1eb3;" class="form-control" required id="fontChange">
         </br>        <br>
 
-        <button type="submit" name="Purchase" style="background-color:#2E2b33;color: #d6bcfa;" id="fontChange">Pay £<?php echo number_format($amountPaid); ?></button>
+        <button type="submit" name="Purchase" style="background-color:#2E2b33;color: #b794f6;" id="fontChange">Pay £<?php echo number_format($amountPaid); ?></button>
     </form>
 	</div>
 </body>

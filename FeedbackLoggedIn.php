@@ -98,7 +98,7 @@ include 'includes/nav.php';
 	font-weight: 400;
 	font-style: normal;
 	background-color: #2e2b33;
-	color: #d6bcfa;
+	color: #b794f6;
 }
 	h3,#errorText{
 	font-family: "Vidaloka", serif;
