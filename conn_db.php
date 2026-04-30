@@ -1,6 +1,12 @@
 <?php
 try {
-
+    $host    = 'gradedunit1-benmacphee1-b4b3.c.aivencloud.com';
+    $port    = 17172;                    
+    $db      = 'gradedunit';              
+    $user    = 'avnadmin';
+    $pass    = 'AVNS_J-oEd11luXOcdaQHysb';
+    $charset = 'utf8mb4';
+    $caPath  = __DIR__ . '/ca.pem';         
 
     $dsn = "mysql:host=$host;port=$port;dbname=$db;charset=$charset";
 
