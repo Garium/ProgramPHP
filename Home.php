@@ -55,7 +55,7 @@ require 'conn_db.php';
         // Array of image sources
         $images = [
             'IMG/HPSustainable1.jpg',
-            'IMG/HPSustainable1.jpg',
+            'IMG/Sustainability2.jpg',
             'IMG/HPSustainable1.jpg'
         ];
 
