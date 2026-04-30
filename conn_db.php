@@ -4,7 +4,7 @@ try {
     $port    = 17172;                    
     $db      = 'gradedunit';              
     $user    = 'avnadmin';
-    $pass    = 'AVNS_J-oEd11luXOcdaQHysb';
+    $pass    = '';
     $charset = 'utf8mb4';
     $caPath  = __DIR__ . '/ca.pem';   
 
