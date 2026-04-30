@@ -40,7 +40,7 @@ if (isset($_GET['points_needed'])) {
     <body style="background-color:#2A2334;">
         <div id="box1" style="margin-top:50px;">
             <h1>Purchase Green vouchers</h1>
-            <p>You earned <?php echo $points; ?> points, purchase a voucher to make up the additional <strong><?php echo $points_needed; ?></strong> points needed to reach 100 points and recieve a certificate.</p>
+            <p>You earned <?php echo $points; ?> green points, purchase a green voucher to make up the additional <strong><?php echo $points_needed; ?></strong> points needed to reach 100 green points and receive a certificate.</p>
         </div>
 		<div id="box1" style="margin-top:10px;">
             <form action=""  method="POST">

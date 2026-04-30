@@ -61,7 +61,7 @@
     <div
          class="text" style=" color:#b794f6;"
          >
-              ©2025 www.SustainEnergy.com - All Rights Reserved.
+              ©2026 www.SustainEnergy.com - All Rights Reserved.
     </div>
     <!-- Copyright -->
   </footer>

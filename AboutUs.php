@@ -41,9 +41,20 @@ require 'conn_db.php';
 	<div id="box1">
 		<h3> about us</h3>
 		<p>Sustain Energy is a project started in 2026 with the aim of sustainability becoming more widespread, managed and ran by edinburgh college</p>
-		<p>Scotland's Capital College which provides high-quality education and training to people and businesses across the region and beyond. We welcome students from more than 135 countries worldwide, who choose from over hundreds of courses across 21 different subject areas with full-time, part-time, evening and distance-learning options available from access to degree level.</p>	</div>
+		<p>Scotland's Capital College which provides high-quality education and training to people and businesses across the region and beyond. We welcome students from more than 135 countries worldwide, who choose from over hundreds of courses across 21 different subject areas with full-time, part-time, evening and distance-learning options available from access to degree level.</p>	
+				
+		<h3> Goal Outline</h3>
+		<p>
+		Sustainability is the heart of our mission, and we take it seriously. In alignment with the UN's Sustainable Development Goals, Our rubric is designed to evaluate
+		a companies sustainability efforts across a range of categories, including energy efficiency, waste reduction, and social responsibility, with the aim of encouraging
+		companies to adopt more sustainable practices and contribute to a more sustainable future for all.
+		</p>
+	</div>
+
+
 
 		<section class="text-center mb-5">
+		<h3> Links to our social media Pages:</h3>
         <a href="https://www.facebook.com/" class="links">
           <i id="links">facebook   </i>
         </a>

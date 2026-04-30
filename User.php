@@ -1,5 +1,5 @@
 <?php
-
+//
 ob_start();
 //navigation bar and database connection
 include 'includes/nav.php';
@@ -118,14 +118,14 @@ if (isset($_POST['Deactivate'])) {
         <!-- Deactivate Account Button -->
 		<h3> Deactivate Account</h3>
 		<form action="" method="POST">
-			<input type="submit" name="Deactivate" id="submitButton" value="Deactivate data"/>
+			<input type="submit" name="Deactivate" id="submitButton" value="Deactivate account"/>
 		</form>
 
 
         <!-- Delete Account Button -->
 		<h3> Delete Account</h3>
 		<form action="" method="POST">
-			<input type="submit" name="delete" id="submitButton" value="delete data"/>
+			<input type="submit" name="delete" id="submitButton" value="Delete account"/>
 		</form>
 
 
@@ -133,7 +133,7 @@ if (isset($_POST['Deactivate'])) {
 		<h3> change Account name for <?php echo htmlspecialchars($_SESSION['CompanyName']) ?></h3>
 		<form action="" method="POST">
 			<input type="text" name="CompanyName" style="color: #543e89">
-			<input type="submit" name="updateUsername" id="submitButton"  value="update data"/>
+			<input type="submit" name="updateUsername" id="submitButton"  value="update account"/>
 		</form>
 
 
@@ -141,7 +141,7 @@ if (isset($_POST['Deactivate'])) {
 		<h3> change Password for <?php echo htmlspecialchars($_SESSION['CompanyName']) ?></h3>
 		<form action="" method="POST">
 			<input type="text" name="Password" style="color: #543e89">
-			<input type="submit" name="updatePassword" id="submitButton" value="update data 2"/>
+			<input type="submit" name="updatePassword" id="submitButton" value="update account"/>
 		</form>
 	</center>
 

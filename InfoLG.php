@@ -29,8 +29,14 @@ require 'conn_db.php';
     <p>
       Sustain Energy has only one goal in mind, helping companies improve their ability to be eco-friendly and ensuring that they have a positive, sustainable impact on 
       the world around them. We provide a service, which allows users to register with us for a fee and fill in a rubric, which determines a green point score, which allows the user
-      to receive a certification for that score, either bronze, silver or gold. IF the company has failed to get a perfect score, they will expected to purchase a certain
+      to receive a certification for that score, either bronze, silver or gold. IF the company has failed to get a perfect score, they will be expected to purchase a certain
       number of green vouchers for their certificates, these purchase will get donated to good causes in efforts for sustainability.  
+    </p>
+    <p>
+      As Part of our efforts, Sustain Energy is committed to protecting the privacy of our users. We will not share any of your information with third parties, and we will 
+      only use your information for the purposes of providing our services to you. We may collect certain information from you, such as your name, email address, phone 
+      number, and company information, but we will never sell or share this information with anyone else. We take the privacy of our users very seriously, and we will do 
+      everything in our power to protect it.
     </p>
   </div>
 </body>
