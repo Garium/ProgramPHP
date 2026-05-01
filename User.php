@@ -10,7 +10,7 @@ $company_ID = $_SESSION['company_ID'];
 
 //get companyName, companyEmail, created_at and accountStatus
 $stmt = $link->prepare(
-    "SELECT CompanyName, Contactemail, created_at, accountStatus
+    "SELECT CompanyName, Contactemail, created_at, accountStatus, company_number
      FROM company_account
      WHERE company_ID = ?"
 );
@@ -37,6 +37,17 @@ if (isset($_POST['updateUsername'])) {
         $_SESSION['CompanyName'] = $CompanyName;
     }
 }
+
+if (isset($_POST['updateNumber'])) {    
+    $CompanyNumber = $_POST['CompanyNumber'];
+    if (!preg_match("/^[0-9]+$/",$CompanyNumber)) { 
+      echo "Only Numbers are allowed"; 
+    } 
+    else {
+        $stmt = $link->prepare("UPDATE company_account SET company_number = ? WHERE company_ID = ?");
+        $stmt->execute([$CompanyNumber, $company_ID]);
+    }}
+
 
 //if the update password button is clicked, validate the new password and update it in the database
 if (isset($_POST['updatePassword'])) {
@@ -101,6 +112,11 @@ if (isset($_POST['Deactivate'])) {
             <span><?= htmlspecialchars($account['CompanyName']) ?></span>
         </div>
         <div>
+            <!-- display company number-->
+            <span>Company number: </span>
+            <span><?= ($account['company_number']) ?></span>
+        </div>
+        <div>
             <!-- display Contact email-->
             <span>Contact email: </span>
             <span><?= htmlspecialchars($account['Contactemail']) ?></span>
@@ -141,6 +157,12 @@ if (isset($_POST['Deactivate'])) {
 			<input type="submit" name="updateUsername" id="submitButton"  value="update account"/>
 		</form>
 
+         <!-- Update Account number Button -->
+		<h3> change Account number for <?php echo htmlspecialchars($_SESSION['CompanyName']) ?></h3>
+		<form action="" method="POST">
+			<input type="text" name="CompanyNumber" style="color: #543e89">
+			<input type="submit" name="updateNumber" id="submitButton"  value="update account"/>
+		</form>
 
         <!-- Update Account Password Button -->
 		<h3> change Password for <?php echo htmlspecialchars($_SESSION['CompanyName']) ?></h3>
