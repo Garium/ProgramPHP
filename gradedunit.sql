@@ -14,6 +14,7 @@ CREATE TABLE "company_account" (
   "password" varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   "created_at" timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   "accountStatus" varchar(50) COLLATE utf8mb4_general_ci DEFAULT 'Active',
+  "company_number" char(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY ("company_ID")
 )
 CREATE TABLE "account_rubrics" (
